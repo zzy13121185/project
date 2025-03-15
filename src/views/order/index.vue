@@ -1,39 +1,81 @@
 <template>
   <div class="mainTableContainer">
     <header class="headerStyle">
-      <el-form ref="form" :model="search" label-width="80px" style="width: 100%;" label-position="left">
+      <el-form
+        ref="form"
+        :model="search"
+        label-width="80px"
+        style="width: 100%;"
+        label-position="left"
+      >
         <el-row :gutter="20">
           <el-col :span="4">
             <el-form-item label="订单ID">
-              <el-input v-model="search.id" maxlength="20" oninput="value=value.replace(/[^\d.]/g,'')" clearable />
+              <el-input
+                v-model="search.id"
+                maxlength="20"
+                oninput="value=value.replace(/[^\d.]/g,'')"
+                clearable
+              />
             </el-form-item>
           </el-col>
           <el-col :span="4">
             <el-form-item label="下单ID">
-              <el-input v-model="search.userId" maxlength="20" oninput="value=value.replace(/[^\d.]/g,'')" clearable />
+              <el-input
+                v-model="search.userId"
+                maxlength="20"
+                oninput="value=value.replace(/[^\d.]/g,'')"
+                clearable
+              />
             </el-form-item>
           </el-col>
           <el-col :span="4">
             <el-form-item label="收款ID">
-              <el-input v-model="search.toId" maxlength="20" clearable oninput="value=value.replace(/[^\d.]/g,'')" />
+              <el-input
+                v-model="search.toId"
+                maxlength="20"
+                clearable
+                oninput="value=value.replace(/[^\d.]/g,'')"
+              />
             </el-form-item>
           </el-col>
           <el-col :span="4">
             <el-form-item label="订单状态">
-              <el-select v-model="search.state" placeholder="请选择订单状态" clearable>
-                <el-option v-for="(value, key, index) in statusList" :key="key" :label="value" :value="key" />
+              <el-select
+                v-model="search.state"
+                placeholder="请选择订单状态"
+                clearable
+              >
+                <el-option
+                  v-for="(value, key, index) in statusList"
+                  :key="index"
+                  :label="value"
+                  :value="key"
+                />
               </el-select>
             </el-form-item>
           </el-col>
           <el-col :span="4">
             <el-form-item label="订单类型">
-              <el-select v-model="search.type" placeholder="请选择订单类型" clearable>
-                <el-option v-for="(value, key, index) in typeList" :key="key" :label="value" :value="key" />
+              <el-select
+                v-model="search.type"
+                placeholder="请选择订单类型"
+                clearable
+              >
+                <el-option
+                  v-for="(value, key, index) in typeList"
+                  :key="index"
+                  :label="value"
+                  :value="key"
+                />
               </el-select>
             </el-form-item>
           </el-col>
           <el-col :span="4">
-            <el-button type="primary" @click="handleSearch">搜索</el-button>
+            <el-button
+              type="primary"
+              @click="handleSearch"
+            >搜索</el-button>
           </el-col>
         </el-row>
         <el-row :gutter="20">
@@ -99,7 +141,10 @@
             <el-button type="text">{{ scope.row.toId }}</el-button>
           </template>
           <template v-else-if="col.key==='backInfo'">
-            <el-button type="text" @click="view(scope.row)">查看</el-button>
+            <el-button
+              type="text"
+              @click="view(scope.row)"
+            >查看</el-button>
           </template>
           <template v-else>
             <span v-if="scope.row[col.key] || scope.row[col.key]===0">
@@ -129,7 +174,11 @@
         </el-col>
       </el-row>
     </div>
-    <infoBox v-if="showInfoBox" ref="infoBox" @handleClose="showInfoBox = false" />
+    <infoBox
+      v-if="showInfoBox"
+      ref="infoBox"
+      @handleClose="showInfoBox = false"
+    />
   </div>
 </template>
 
@@ -264,5 +313,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 </style>

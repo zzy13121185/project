@@ -1,42 +1,85 @@
 <template>
   <div class="mainTableContainer">
     <header class="headerStyle">
-      <el-form ref="form" :model="search" label-width="80px" style="width: 100%;" label-position="left">
+      <el-form
+        ref="form"
+        :model="search"
+        label-width="80px"
+        style="width: 100%;"
+        label-position="left"
+      >
         <el-row :gutter="20">
           <el-col :span="4">
             <el-form-item label="开课ID">
-              <el-input v-model="search.id" maxlength="20" oninput="value=value.replace(/[^\d.]/g,'')" clearable />
+              <el-input
+                v-model="search.id"
+                maxlength="20"
+                oninput="value=value.replace(/[^\d.]/g,'')"
+                clearable
+              />
             </el-form-item>
           </el-col>
           <el-col :span="4">
             <el-form-item label="课程ID">
-              <el-input v-model="search.courseId" maxlength="20" oninput="value=value.replace(/[^\d.]/g,'')" clearable />
+              <el-input
+                v-model="search.courseId"
+                maxlength="20"
+                oninput="value=value.replace(/[^\d.]/g,'')"
+                clearable
+              />
             </el-form-item>
           </el-col>
           <el-col :span="4">
             <el-form-item label="老师ID">
-              <el-input v-model="search.teacherId" maxlength="20" clearable oninput="value=value.replace(/[^\d.]/g,'')" />
+              <el-input
+                v-model="search.teacherId"
+                maxlength="20"
+                clearable
+                oninput="value=value.replace(/[^\d.]/g,'')"
+              />
             </el-form-item>
           </el-col>
           <el-col :span="4">
             <el-form-item label="学生ID">
-              <el-input v-model="search.studentId" maxlength="20" clearable oninput="value=value.replace(/[^\d.]/g,'')" />
+              <el-input
+                v-model="search.studentId"
+                maxlength="20"
+                clearable
+                oninput="value=value.replace(/[^\d.]/g,'')"
+              />
             </el-form-item>
           </el-col>
           <el-col :span="4">
             <el-form-item label="场地ID">
-              <el-input v-model="search.siteId" maxlength="20" clearable oninput="value=value.replace(/[^\d.]/g,'')" />
+              <el-input
+                v-model="search.siteId"
+                maxlength="20"
+                clearable
+                oninput="value=value.replace(/[^\d.]/g,'')"
+              />
             </el-form-item>
           </el-col>
           <el-col :span="4">
-            <el-button type="primary" @click="handleSearch">搜索</el-button>
+            <el-button
+              type="primary"
+              @click="handleSearch"
+            >搜索</el-button>
           </el-col>
         </el-row>
         <el-row :gutter="20">
           <el-col :span="4">
             <el-form-item label="开课状态">
-              <el-select v-model="search.status" placeholder="请选择开课状态" clearable>
-                <el-option v-for="(value, key, index) in statusList" :key="key" :label="value" :value="key" />
+              <el-select
+                v-model="search.status"
+                placeholder="请选择开课状态"
+                clearable
+              >
+                <el-option
+                  v-for="(value, key, index) in statusList"
+                  :key="index"
+                  :label="value"
+                  :value="key"
+                />
               </el-select>
             </el-form-item>
           </el-col>
@@ -96,16 +139,25 @@
       >
         <template slot-scope="scope">
           <template v-if="col.key==='data'">
-            <el-button type="text" @click="viewInfo(scope.row)">查看</el-button>
+            <el-button
+              type="text"
+              @click="viewInfo(scope.row)"
+            >查看</el-button>
           </template>
           <template v-else-if="col.key==='status'">
             {{ statusList[scope.row.status] }}
           </template>
           <template v-else-if="col.key==='recordCount'">
-            <el-button type="text" @click="view('book',scope.row)">{{ scope.row.recordCount }}人</el-button>
+            <el-button
+              type="text"
+              @click="view('book',scope.row)"
+            >{{ scope.row.recordCount }}人</el-button>
           </template>
           <template v-else-if="col.key==='subscribeCount'">
-            <el-button type="text" @click="view('line',scope.row)">{{ scope.row.subscribeCount }}人</el-button>
+            <el-button
+              type="text"
+              @click="view('line',scope.row)"
+            >{{ scope.row.subscribeCount }}人</el-button>
           </template>
           <template v-else>
             <span v-if="scope.row[col.key] || scope.row[col.key]===0">
@@ -115,9 +167,16 @@
           </template>
         </template>
       </el-table-column>
-      <el-table-column label="操作" align="center">
+      <el-table-column
+        label="操作"
+        align="center"
+      >
         <template slot-scope="scope">
-          <el-button type="text" style="color: #F56C6C" @click="handleDelete(scope.row)">取消资格</el-button>
+          <el-button
+            type="text"
+            style="color: #F56C6C"
+            @click="handleDelete(scope.row)"
+          >取消资格</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -140,8 +199,16 @@
         </el-col>
       </el-row>
     </div>
-    <bookClassInfoBox v-if="showBookClassInfoBox" ref="bookClassInfoBox" @handleClose="showBookClassInfoBox = false" />
-    <openClassInfoBox v-if="showOpenClassInfoBox" ref="openClassInfoBox" @handleClose="showOpenClassInfoBox = false" />
+    <bookClassInfoBox
+      v-if="showBookClassInfoBox"
+      ref="bookClassInfoBox"
+      @handleClose="showBookClassInfoBox = false"
+    />
+    <openClassInfoBox
+      v-if="showOpenClassInfoBox"
+      ref="openClassInfoBox"
+      @handleClose="showOpenClassInfoBox = false"
+    />
   </div>
 </template>
 
@@ -300,5 +367,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 </style>

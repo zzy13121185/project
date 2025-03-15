@@ -7,54 +7,119 @@
       top="5vh"
       :before-close="handleClose"
     >
-      <el-form ref="ruleForm" :model="ruleForm" :rules="rules" label-width="100px">
-        <el-form-item v-if="ruleForm.id" label="教室ID">
-          <el-input v-model="ruleForm.id" disabled />
+      <el-form
+        ref="ruleForm"
+        :model="ruleForm"
+        :rules="rules"
+        label-width="100px"
+      >
+        <el-form-item
+          v-if="ruleForm.id"
+          label="教室ID"
+        >
+          <el-input
+            v-model="ruleForm.id"
+            disabled
+          />
         </el-form-item>
-        <el-form-item label="教室名称" prop="name">
-          <el-input v-model="ruleForm.name" clearable maxlength="20" />
+        <el-form-item
+          label="教室名称"
+          prop="name"
+        >
+          <el-input
+            v-model="ruleForm.name"
+            clearable
+            maxlength="20"
+          />
         </el-form-item>
-        <el-form-item label="场地ID" prop="siteId">
-          <el-input v-model="ruleForm.siteId" oninput="value=value.replace(/[^\d.]/g,'')" clearable maxlength="20" />
+        <el-form-item
+          label="场地ID"
+          prop="siteId"
+        >
+          <el-input
+            v-model="ruleForm.siteId"
+            oninput="value=value.replace(/[^\d.]/g,'')"
+            clearable
+            maxlength="20"
+          />
         </el-form-item>
         <!--      1-500-->
-        <el-form-item label="最大人数" prop="maxNumber">
-          <el-input-number v-model="ruleForm.maxNumber" controls-position="right" :min="1" :max="500" />
+        <el-form-item
+          label="最大人数"
+          prop="maxNumber"
+        >
+          <el-input-number
+            v-model="ruleForm.maxNumber"
+            controls-position="right"
+            :min="1"
+            :max="500"
+          />
         </el-form-item>
         <el-form-item label="舞蹈阵型">
           <el-row>
             <el-col :span="3">行</el-col>
             <!--        1-100-->
             <el-col :span="9">
-              <el-input-number v-model="ruleForm.rowNumber" controls-position="right" :min="1" :max="100" />
+              <el-input-number
+                v-model="ruleForm.rowNumber"
+                controls-position="right"
+                :min="1"
+                :max="100"
+              />
             </el-col>
             <el-col :span="3">列</el-col>
             <el-col :span="9">
-              <el-input-number v-model="ruleForm.columnNumber" controls-position="right" :min="1" :max="100" />
+              <el-input-number
+                v-model="ruleForm.columnNumber"
+                controls-position="right"
+                :min="1"
+                :max="100"
+              />
             </el-col>
           </el-row>
         </el-form-item>
-        <el-form-item label="正常时间" prop="normalTimeUnitPrice">
-          <el-input-number v-model="ruleForm.normalTimeUnitPrice" controls-position="right" :min="1" :max="100000" /> (元/小时)
+        <el-form-item
+          label="正常时间"
+          prop="normalTimeUnitPrice"
+        >
+          <el-input-number
+            v-model="ruleForm.normalTimeUnitPrice"
+            controls-position="right"
+            :min="1"
+            :max="100000"
+          /> (元/小时)
         </el-form-item>
         <el-form-item label="黄金时间">
-          <el-input-number v-model="ruleForm.goldTimeUnitPrice" controls-position="right" :min="0" :max="100000" /> (元/小时)
+          <el-input-number
+            v-model="ruleForm.goldTimeUnitPrice"
+            controls-position="right"
+            :min="0"
+            :max="100000"
+          /> (元/小时)
         </el-form-item>
         <el-form-item label="优惠时间">
-          <el-input-number v-model="ruleForm.discountTimeUnitPrice" controls-position="right" :min="0" :max="100000" /> (元/小时)
+          <el-input-number
+            v-model="ruleForm.discountTimeUnitPrice"
+            controls-position="right"
+            :min="0"
+            :max="100000"
+          /> (元/小时)
         </el-form-item>
         <div style="padding: 10px; background: #F2F6FC">
           <el-form-item label="营业时间" />
-          <el-form-item label="工作日" required>
+          <el-form-item
+            label="工作日"
+            required
+          >
             <el-row>
               <el-col :span="11">
                 <el-form-item prop="weekdayStartTime">
                   <el-time-select
-                      v-model="ruleForm.weekdayStartTime"
-                      style="width: 100%"
-                      placeholder="起始时间"
-                      :editable="false"
-                      :picker-options="{
+                    v-model="ruleForm.weekdayStartTime"
+                    style="width: 100%"
+                    placeholder="起始时间"
+                    :editable="false"
+                    :picker-options="{
                       start: '00:00',
                       step: '00:30',
                       end: '23:30',
@@ -63,15 +128,18 @@
                   />
                 </el-form-item>
               </el-col>
-              <el-col :span="2" style="text-align: center">~</el-col>
+              <el-col
+                :span="2"
+                style="text-align: center"
+              >~</el-col>
               <el-col :span="11">
                 <el-form-item prop="weekdayEndTime">
                   <el-time-select
-                      v-model="ruleForm.weekdayEndTime"
-                      style="width: 100%"
-                      placeholder="结束时间"
-                      :editable="false"
-                      :picker-options="{
+                    v-model="ruleForm.weekdayEndTime"
+                    style="width: 100%"
+                    placeholder="结束时间"
+                    :editable="false"
+                    :picker-options="{
                       start: '00:00',
                       step: '00:30',
                       end: '23:30',
@@ -82,7 +150,10 @@
               </el-col>
             </el-row>
           </el-form-item>
-          <el-form-item label="周末节假日" required>
+          <el-form-item
+            label="周末节假日"
+            required
+          >
             <el-row>
               <el-col :span="11">
                 <el-form-item prop="restdayStartTime">
@@ -100,7 +171,10 @@
                   />
                 </el-form-item>
               </el-col>
-              <el-col :span="2" style="text-align: center">~</el-col>
+              <el-col
+                :span="2"
+                style="text-align: center"
+              >~</el-col>
               <el-col :span="11">
                 <el-form-item prop="restdayEndTime">
                   <el-time-select
@@ -123,7 +197,7 @@
         </div>
 
         <div style="padding: 10px; background: #F2F6FC ;margin: 20px 0">
-          <el-form-item label="工作日"/>
+          <el-form-item label="工作日" />
           <el-form-item label="正常时间">
             <el-tag
               v-for="(tag,index) in normalTimeWeek"
@@ -134,7 +208,11 @@
             >
               {{ tag.value }}
             </el-tag>
-            <el-button type="primary" :disabled="!timeWeekRange" @click="addWeek('normal')">编辑</el-button>
+            <el-button
+              type="primary"
+              :disabled="!timeWeekRange"
+              @click="addWeek('normal')"
+            >编辑</el-button>
           </el-form-item>
           <el-form-item label="黄金时间">
             <el-tag
@@ -146,7 +224,11 @@
             >
               {{ tag.value }}
             </el-tag>
-            <el-button type="primary" :disabled="!timeWeekRange" @click="addWeek('gold')">编辑</el-button>
+            <el-button
+              type="primary"
+              :disabled="!timeWeekRange"
+              @click="addWeek('gold')"
+            >编辑</el-button>
           </el-form-item>
           <el-form-item label="优惠时间">
             <el-tag
@@ -158,14 +240,19 @@
             >
               {{ tag.value }}
             </el-tag>
-            <el-button type="primary" :disabled="!timeWeekRange" @click="addWeek('free')">编辑</el-button>
+            <el-button
+              type="primary"
+              :disabled="!timeWeekRange"
+              @click="addWeek('free')"
+            >编辑</el-button>
           </el-form-item>
           <el-form-item label="禁用时间">
             <template v-for="(tag) in restTimeListWeek">
               <el-tag
-                  v-if="getValueByIndex(tag[0]) !== getValueByIndex(tag[1])"
-                  :disable-transitions="false"
-                  type="danger"
+                v-if="getValueByIndex(tag[0]) !== getValueByIndex(tag[1])"
+                :key="tag"
+                :disable-transitions="false"
+                type="danger"
               >
                 {{ getValueByIndex(tag[0]) }}~{{ getValueByIndex(tag[1]) }}
               </el-tag>
@@ -173,62 +260,84 @@
           </el-form-item>
         </div>
         <div style="padding: 10px; background: #F2F6FC ;margin-top: 20px">
-          <el-form-item label="周末节假日"/>
+          <el-form-item label="周末节假日" />
           <el-form-item label="正常时间">
             <el-tag
-                v-for="(tag,index) in normalTime"
-                :key="index"
-                closable
-                :disable-transitions="false"
-                @close="handleBoxClose(tag,'normal')"
+              v-for="(tag,index) in normalTime"
+              :key="index"
+              closable
+              :disable-transitions="false"
+              @close="handleBoxClose(tag,'normal')"
             >
               {{ tag.value }}
             </el-tag>
-            <el-button type="primary" :disabled="!timeNormalRange" @click="add('normal')">编辑</el-button>
+            <el-button
+              type="primary"
+              :disabled="!timeNormalRange"
+              @click="add('normal')"
+            >编辑</el-button>
           </el-form-item>
           <el-form-item label="黄金时间">
             <el-tag
-                v-for="(tag,index) in goldTime"
-                :key="index"
-                closable
-                :disable-transitions="false"
-                @close="handleClose(tag,'gold')"
+              v-for="(tag,index) in goldTime"
+              :key="index"
+              closable
+              :disable-transitions="false"
+              @close="handleClose(tag,'gold')"
             >
               {{ tag.value }}
             </el-tag>
-            <el-button type="primary" :disabled="!timeNormalRange" @click="add('gold')">编辑</el-button>
+            <el-button
+              type="primary"
+              :disabled="!timeNormalRange"
+              @click="add('gold')"
+            >编辑</el-button>
           </el-form-item>
           <el-form-item label="优惠时间">
             <el-tag
-                v-for="(tag,index) in freeTime"
-                :key="index"
-                closable
-                :disable-transitions="false"
-                @close="handleClose(tag,'free')"
+              v-for="(tag,index) in freeTime"
+              :key="index"
+              closable
+              :disable-transitions="false"
+              @close="handleClose(tag,'free')"
             >
               {{ tag.value }}
             </el-tag>
-            <el-button type="primary" :disabled="!timeNormalRange" @click="add('free')">编辑</el-button>
+            <el-button
+              type="primary"
+              :disabled="!timeNormalRange"
+              @click="add('free')"
+            >编辑</el-button>
           </el-form-item>
           <el-form-item label="禁用时间">
             <template v-for="(tag) in restTimeList">
               <el-tag
-                  v-if="getValueByIndex(tag[0]) !== getValueByIndex(tag[1])"
-                  :disable-transitions="false"
-                  type="danger"
+                v-if="getValueByIndex(tag[0]) !== getValueByIndex(tag[1])"
+                :key="tag"
+                :disable-transitions="false"
+                type="danger"
               >
                 {{ getValueByIndex(tag[0]) }}~{{ getValueByIndex(tag[1]) }}
               </el-tag>
             </template>
           </el-form-item>
         </div>
-        <el-form-item label="场地图片" style="margin-top: 20px">
-          <uploadImg ref="upload" @uploadSuccess="uploadPicSuccess" />
+        <el-form-item
+          label="场地图片"
+          style="margin-top: 20px"
+        >
+          <uploadImg
+            ref="upload"
+            @uploadSuccess="uploadPicSuccess"
+          />
         </el-form-item>
       </el-form>
 
       <el-row style="margin-top: 20px;text-align: center">
-        <el-button type="primary" @click="submitForm('ruleForm')">确认</el-button>
+        <el-button
+          type="primary"
+          @click="submitForm('ruleForm')"
+        >确认</el-button>
       </el-row>
 
     </el-dialog>
@@ -267,7 +376,10 @@
         </el-col>
       </el-row>
       <el-row style="margin-top: 20px;text-align: center">
-        <el-button type="primary" @click="confirmTime()">确定</el-button>
+        <el-button
+          type="primary"
+          @click="confirmTime()"
+        >确定</el-button>
       </el-row>
     </el-dialog>
     <el-dialog
@@ -305,7 +417,10 @@
         </el-col>
       </el-row>
       <el-row style="margin-top: 20px;text-align: center">
-        <el-button type="primary" @click="confirmTimeWeek()">确定</el-button>
+        <el-button
+          type="primary"
+          @click="confirmTimeWeek()"
+        >确定</el-button>
       </el-row>
     </el-dialog>
   </div>
@@ -497,7 +612,7 @@ export default {
           rest.push([all[0], all[all.length - 1]])
         }
         if (rest.length === 1 && rest[0][0] === rest[0][1]) {
-
+          console.log('empty')
         } else {
           this.restTimeList = rest
         }
@@ -568,8 +683,8 @@ export default {
     confirmTime() {
       const start = this.startSelect
       const end = this.endSelect
-      let aa = start.substring(3, 5)
-      let bb = end.substring(3, 5)
+      const aa = start.substring(3, 5)
+      const bb = end.substring(3, 5)
       if (this.hasError(start, end)) {
         warningMessage(this, '存在时间交叉！')
       } else {
@@ -635,7 +750,6 @@ export default {
       } else {
         return `${val}:00`
       }
-
     },
     getTimesDTO() {
       const timesDTO = []

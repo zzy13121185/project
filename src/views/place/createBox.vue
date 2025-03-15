@@ -5,11 +5,26 @@
     width="700px"
     :before-close="handleClose"
   >
-    <el-form ref="ruleForm" :model="ruleForm" :rules="rules" label-width="100px">
-      <el-form-item label="场地名称" prop="name">
-        <el-input v-model="ruleForm.name" clearable maxlength="20" />
+    <el-form
+      ref="ruleForm"
+      :model="ruleForm"
+      :rules="rules"
+      label-width="100px"
+    >
+      <el-form-item
+        label="场地名称"
+        prop="name"
+      >
+        <el-input
+          v-model="ruleForm.name"
+          clearable
+          maxlength="20"
+        />
       </el-form-item>
-      <el-form-item label="场主ID" prop="farmersId">
+      <el-form-item
+        label="场主ID"
+        prop="farmersId"
+      >
         <!--        <el-input v-model="ruleForm.farmersId" oninput="value=value.replace(/[^\d.]/g,'')" clearable maxlength="20" />-->
         <el-autocomplete
           v-model="ruleForm.farmersId"
@@ -20,7 +35,10 @@
           @select="handleSelect"
         />
       </el-form-item>
-      <el-form-item label="地址" prop="selectedOptions">
+      <el-form-item
+        label="地址"
+        prop="selectedOptions"
+      >
         <el-cascader
           v-model="ruleForm.selectedOptions"
           style="width: 260px"
@@ -29,7 +47,10 @@
           @change="selectPlace"
         />
       </el-form-item>
-      <el-form-item label="详细位置" prop="address">
+      <el-form-item
+        label="详细位置"
+        prop="address"
+      >
         <el-input
           v-model="ruleForm.address"
           clearable
@@ -38,7 +59,10 @@
           show-word-limit
         />
       </el-form-item>
-      <el-form-item label="营业时间" prop="businessTime">
+      <el-form-item
+        label="营业时间"
+        prop="businessTime"
+      >
         <el-input
           v-model="ruleForm.businessTime"
           clearable
@@ -47,7 +71,10 @@
           show-word-limit
         />
       </el-form-item>
-      <el-form-item label="描述" prop="desc">
+      <el-form-item
+        label="描述"
+        prop="desc"
+      >
         <el-input
           v-model="ruleForm.desc"
           clearable
@@ -66,13 +93,22 @@
         />%
       </el-form-item>
       <el-form-item label="场地图片">
-        <uploadImg ref="upload" @uploadSuccess="uploadPicSuccess" />
+        <uploadImg
+          ref="upload"
+          @uploadSuccess="uploadPicSuccess"
+        />
       </el-form-item>
     </el-form>
 
     <el-row style="margin-top: 20px;text-align: center">
-      <el-button type="primary" @click="handleClose">取消</el-button>
-      <el-button type="primary" @click="submitForm('ruleForm')">确认</el-button>
+      <el-button
+        type="primary"
+        @click="handleClose"
+      >取消</el-button>
+      <el-button
+        type="primary"
+        @click="submitForm('ruleForm')"
+      >确认</el-button>
     </el-row>
   </el-dialog>
 </template>
@@ -151,7 +187,7 @@ export default {
     }
   },
   methods: {
-    selectPlace (val) {
+    selectPlace(val) {
       console.log(val)
     },
     uploadPicSuccess(picList) {
@@ -203,7 +239,6 @@ export default {
         post.city = this.ruleForm.selectedOptions[1]
       }
       post.province = this.ruleForm.selectedOptions[0]
-
 
       post.county = this.ruleForm.selectedOptions[2]
       post.farmersId = Number(post.farmersId)
@@ -273,25 +308,25 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-  .line {
-    width: 100%;
-    height: auto;
-    min-height: 30px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+.line {
+  width: 100%;
+  height: auto;
+  min-height: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 
-    .title {
-      width: 30%;
-      text-align: right;
-      padding-right: 20px;
-    }
-
-    .content {
-      padding-left: 20px;
-      flex: 1;
-      text-align: left;
-    }
+  .title {
+    width: 30%;
+    text-align: right;
+    padding-right: 20px;
   }
+
+  .content {
+    padding-left: 20px;
+    flex: 1;
+    text-align: left;
+  }
+}
 </style>

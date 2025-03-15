@@ -1,11 +1,22 @@
 <template>
   <div class="mainTableContainer">
     <header class="headerStyle">
-      <el-form ref="form" :model="search" label-width="80px" style="width: 100%;" label-position="left">
+      <el-form
+        ref="form"
+        :model="search"
+        label-width="80px"
+        style="width: 100%;"
+        label-position="left"
+      >
         <el-row :gutter="20">
           <el-col :span="4">
             <el-form-item label="用户ID">
-              <el-input v-model="search.id" maxlength="20" oninput="value=value.replace(/[^\d.]/g,'')" clearable />
+              <el-input
+                v-model="search.id"
+                maxlength="20"
+                oninput="value=value.replace(/[^\d.]/g,'')"
+                clearable
+              />
             </el-form-item>
           </el-col>
           <el-col :span="6">
@@ -42,13 +53,25 @@
           </el-col>
           <el-col :span="4">
             <el-form-item label="提取状态">
-              <el-select v-model="search.state" placeholder="请选择提取状态" clearable>
-                <el-option v-for="(value, key, index) in statusList" :key="key" :label="value" :value="key" />
+              <el-select
+                v-model="search.state"
+                placeholder="请选择提取状态"
+                clearable
+              >
+                <el-option
+                  v-for="(value, key, index) in statusList"
+                  :key="index"
+                  :label="value"
+                  :value="key"
+                />
               </el-select>
             </el-form-item>
           </el-col>
           <el-col :span="4">
-            <el-button type="primary" @click="handleSearch">搜索</el-button>
+            <el-button
+              type="primary"
+              @click="handleSearch"
+            >搜索</el-button>
           </el-col>
         </el-row>
       </el-form>
@@ -80,10 +103,16 @@
             <el-button type="text">{{ scope.row.toId }}</el-button>
           </template>
           <template v-else-if="col.key==='backInfo'">
-            <el-button type="text" @click="view('book',scope.row)">查看</el-button>
+            <el-button
+              type="text"
+              @click="view('book',scope.row)"
+            >查看</el-button>
           </template>
           <template v-else-if="col.key==='businessId'">
-            <el-button type="text" @click="view('line',scope.row)">查看</el-button>
+            <el-button
+              type="text"
+              @click="view('line',scope.row)"
+            >查看</el-button>
           </template>
           <template v-else>
             <span v-if="scope.row[col.key] || scope.row[col.key]===0">
@@ -93,11 +122,24 @@
           </template>
         </template>
       </el-table-column>
-      <el-table-column label="操作" align="center">
+      <el-table-column
+        label="操作"
+        align="center"
+      >
         <template slot-scope="scope">
-          <el-button type="text" @click="pass(scope.row.id)">通过</el-button>
-          <el-button type="text" style="color: #F56C6C" @click="refuse(scope.row.id)">拒绝</el-button>
-          <el-button type="text" @click="view('order',scope.row.id)">查看流水</el-button>
+          <el-button
+            type="text"
+            @click="pass(scope.row.id)"
+          >通过</el-button>
+          <el-button
+            type="text"
+            style="color: #F56C6C"
+            @click="refuse(scope.row.id)"
+          >拒绝</el-button>
+          <el-button
+            type="text"
+            @click="view('order',scope.row.id)"
+          >查看流水</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -192,7 +234,8 @@ export default {
       }
     },
     view(path, id) {
-      this.$router.push({ name: path, query: { id: id }})
+      // eslint-disable-next-line object-curly-spacing
+      this.$router.push({ name: path, query: { id: id } })
     },
     selectTime(val, type) {
       if (type === 'classTime') {
@@ -259,5 +302,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 </style>

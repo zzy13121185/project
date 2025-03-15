@@ -1,29 +1,32 @@
 <template>
   <div class="navbar">
-    <hamburger id="hamburger-container" :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" />
+    <hamburger
+      id="hamburger-container"
+      :is-active="sidebar.opened"
+      class="hamburger-container"
+      @toggleClick="toggleSideBar"
+    />
     <div class="right-menu">
-      <el-button type="danger" @click.native="logout">退出登录</el-button>
+      <el-button
+        type="danger"
+        @click.native="logout"
+      >退出登录</el-button>
     </div>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-import Breadcrumb from '@/components/Breadcrumb'
+// import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
-import ErrorLog from '@/components/ErrorLog'
-import Screenfull from '@/components/Screenfull'
-import SizeSelect from '@/components/SizeSelect'
-import Search from '@/components/HeaderSearch'
+// import ErrorLog from '@/components/ErrorLog'
+// import Screenfull from '@/components/Screenfull'
+// import SizeSelect from '@/components/SizeSelect'
+// import Search from '@/components/HeaderSearch'
 
 export default {
   components: {
-    Breadcrumb,
-    Hamburger,
-    ErrorLog,
-    Screenfull,
-    SizeSelect,
-    Search
+    Hamburger
   },
   computed: {
     ...mapGetters([
@@ -50,18 +53,18 @@ export default {
   overflow: hidden;
   position: relative;
   background: #fff;
-  box-shadow: 0 1px 4px rgba(0,21,41,.08);
+  box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
 
   .hamburger-container {
     line-height: 46px;
     height: 100%;
     float: left;
     cursor: pointer;
-    transition: background .3s;
-    -webkit-tap-highlight-color:transparent;
+    transition: background 0.3s;
+    -webkit-tap-highlight-color: transparent;
 
     &:hover {
-      background: rgba(0, 0, 0, .025)
+      background: rgba(0, 0, 0, 0.025);
     }
   }
 
@@ -78,7 +81,7 @@ export default {
     float: right;
     height: 100%;
     line-height: 50px;
-		padding-right: 20px;
+    padding-right: 20px;
     &:focus {
       outline: none;
     }
@@ -93,10 +96,10 @@ export default {
 
       &.hover-effect {
         cursor: pointer;
-        transition: background .3s;
+        transition: background 0.3s;
 
         &:hover {
-          background: rgba(0, 0, 0, .025)
+          background: rgba(0, 0, 0, 0.025);
         }
       }
     }
